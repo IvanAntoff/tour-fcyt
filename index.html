@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- metadata -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="Tour virtual FCyT UADER CDELU!">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="icon" type="image/png" href="assets/Icons/Favicons/favicon.ico">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/Icons/Favicons/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/Icons/Favicons/favicon-32x32.png">
+        <link rel="preload" href="assets/style.css" as="style">
+        <link rel="preload" href="assets/js/backend.js" as="script">
+        <link rel="stylesheet" href="assets/style.css">
+        <title>FCyT UADER CDELU</title>
+        <script src="assets/js/backend.js"></script>
+    </head>
+    <!--            Audio & Video           -->
+    <body id="FullScreen" onload="Listeners();ChequeoDeCarga();ActivarDiseñoDeCancelacion();">
+        <div id="PantallaDeInicio">
+            <h1 id="TituloDelInicio" class="TextoDelInicio">Viví la Ciencia y la Tecnología en la FCyT</h1>
+            <div class="loader"></div>
+            <p class="TextoDelInicio">Cargando.</p>
+        </div>
+        <div id="ContenedorVideo">
+            <div id="Cargando" class="loader"></div>
+            <video id='Video' preload="auto" poster="assets/Imgs/Posters/Inicial.jpg">
+                <source id='FuenteWebm' src="assets/Videos/0.webm" type='video/webm'>
+                <p>Su navegador no soporta el formato de los vídeos y/o HTML5.</p>
+            </video>
+            <audio id='Audios' preload="auto">
+                <source src="" type="audio/mpeg">
+            </audio>
+            <audio id='Musica' preload="auto">
+                <source id='FuenteMusica' src="">
+            </audio>
+            <audio id='Loops' loop>
+                <source src="" type="audio/ogg">
+            </audio> 
+            <div id='Botones'>
+                <button id="BotonIzquierda-Opcion1" onclick=""></button>
+                <button id="BotonDerecha-Opcion2" onclick=""></button>
+                <button id="BotonIzquierda-Opcion3" onclick=""></button>
+                <button id="BotonDerecha-Opcion4" onclick=""></button>
+                <button id="BotonInferior-Opcion5" onclick=""></button>
+                <button id="BotonSuperior-Opcion6" onclick=""></button>
+                <button id="BotonCentral-Opcion7" onclick=""></button>
+                <button id="BotonCentral-Opcion8" onclick=""></button>
+                <button id="BotonCentral-Opcion9" onclick=""></button>
+                <button id="BotonPlay" onclick="Start()">| ></button>
+            </div>
+        </div>
+        <!--            Actividad de Matematica           -->
+        <div id="ContenedorMontyHall">
+            <span id="TituloMontyHall" class="MontyHallText">Dimensión matemática</span>
+            <div  id="Puertas">
+                <button class="SalirDeJuego" onclick="PauseLoop();CambiarSonidoMH(0);VictoriaMH();">Omitir juego.</button>
+                <div class="Puerta"><img src="assets/Imgs/MontyHall/closed_door.png" id="Puerta1" alt="Puerta1" class="Puerta" onclick="JugarMontyHall(1)"></div>
+                <div class="Puerta"><img src="assets/Imgs/MontyHall/closed_door.png" id="Puerta2" alt="Puerta2" class="Puerta" onclick="JugarMontyHall(2)"></div>
+                <div class="Puerta"><img src="assets/Imgs/MontyHall/closed_door.png" id="Puerta3" alt="Puerta3" class="Puerta" onclick="JugarMontyHall(3)"></div>
+            </div>
+            <div id="AreaBotonesMontyHall">
+                <span id="MensajeMontyHall" class="MontyHallText">Deberás obtener 3 llaves para superar el reto de Monty Hall.</span>
+            </div>    
+        </div>
+        <!--            Actividad de sistemas           -->
+        <div id="ContenedorSistemas">
+            <button class="SalirDeJuego" onclick="MostarAlgoritmoResuelto();">Omitir juego.</button>
+            <div id="ContenedorSuperior">
+                <div id="ContenedorMensajesSistemas" class="ContenedoresSuperiores">
+                    <p id="ContenedorMensajesAlgoritmo">
+                        Guía: Parece que para poder salir de la habitación deberemos resolver un pequeño algoritmo.                    </p>
+                </div>
+                <div id="ContenedorCodigo" class="ContenedoresSuperiores">
+                    <img id="ImagenDelAlgoritmo" src="assets/Imgs/DevOps/Puerta-y-llave.jpg" alt="">
+                </div>
+            </div>
+            <div id="ContenedorPiezasDeCodigo">
+                <button class="DevButton" id="BotonTomarLlave" onclick="Accion(0)">
+                    Tomar llave.
+                </button>
+                <button class="DevButton" id="BotonRotarPicaporte" onclick="Accion(4)">
+                    Rotar el picaporte.
+                </button>
+                <button class="DevButton" id="BotonRotarLlave" onclick="Accion(2)">
+                    Rotar llave.
+                </button>
+                <button class="DevButton" id="BotonColocarLlave" onclick="Accion(1)">
+                    Colocar llave.
+                </button>
+                <button class="DevButton" onclick="ReiniciarAlgoritmo()">
+                    Reiniciar
+                </button>
+            </div>
+        </div>
+        <div id="ContenedorAuto">
+            <button class="SalirDeJuego" onclick="VictoriaAuto();">Omitir juego.</button>
+            <div  id="CuadranteSuperior" class="Cuadrante">
+                <div class="AreaDeObjetos">
+                    <div class="ContenedorDeObjetoAuto" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <img src="assets/Imgs/Auto/Micro.png" alt="Micro" id="Micro"  class="ObjetoAuto" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('Micro')">
+                    </div>
+                    <div class="ContenedorDeObjetoAuto" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        <img src="assets/Imgs/Auto/Sensores.png" alt="Sensores" id="Sensores" class="ObjetoAuto" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('Sensores')">
+                    </div>
+                </div>    
+                <div class="Cuarto" id="Cuarto1">
+                </div>
+                <div class="Cuarto" id="Cuarto2" ontouchstart="DestionoSeleccionado('ReceptorDeSensorDeCaudal')">
+                    <div id="ReceptorDeSensorDeCaudal" ondrop="dropDeAuto(event)" ondragover="allowDrop(event)" ontouchstart="DestionoSeleccionado('ReceptorDeSensorDeCaudal')">
+                    </div>
+                </div>
+            </div>
+            <div  id="CuadranteInferior" class="Cuadrante">
+                <div class="AreaDeObjetos">
+                    <div class="ContenedorDeObjetoAuto" ondrop="dropDeAuto(event)" ondragover="allowDrop(event)">
+                        <img src="assets/Imgs/Auto/SensorDeCaudal.png" alt="SensorDeCaudal" id="SensorDeCaudal"  class="ObjetoAuto" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('SensorDeCaudal')">
+                    </div>
+                    <div class="ContenedorDeObjetoAuto" ondrop="dropDeAuto(event)" ondragover="allowDrop(event)">
+                        <img src="assets/Imgs/Auto/Pantalla.png" alt="Pantalla" id="Pantalla" class="ObjetoAuto" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('Pantalla')">
+                    </div>
+                </div>   
+                <div class="Cuarto" id="Cuarto3" ontouchstart="DestionoSeleccionado('ReceptorDePantalla')">
+                    <div id="ReceptorDePantalla" ondrop="dropDeAuto(event)" ondragover="allowDrop(event)" ontouchstart="DestionoSeleccionado('Pantalla')">
+                    </div>
+                </div>
+                <div class="Cuarto" id="Cuarto4" ontouchstart="DestionoSeleccionado('ReceptorDeSensoresYMicro')">
+                    <div id="ReceptorDeSensores" ondrop="dropDeAuto(event)" ondragover="allowDrop(event)">
+                    </div>
+                    <div id="ReceptorDeMicro" ondrop="dropDeAuto(event)" ondragover="allowDrop(event)" ontouchstart="DestionoSeleccionado('ReceptorDeSensoresYMicro')">
+                    </div>
+                </div>
+            </div>    
+        </div>
+        <div id="ContenedorTelecomunicaciones">
+            <button class="SalirDeJuego" onclick="VictoriaIng();">Omitir juego.</button>
+            <div id="TercioSuerior" class="Tercio">
+                <div class="Cuadro" id="PrimerCuadro"><img src="assets/Imgs/Telecomunicaciones/modem1.png" alt="Modem1" id="Modem" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('Modem')"></div>
+                <div class="Cuadro" id="SegundoCuadro"></div>
+                <div class="Cuadro" id="TercerCuadro"></div>
+                <div class="Cuadro" id="CuartoCuadro"></div>
+                <div class="Cuadro" id="QuintoCuadro"></div>
+                <div class="Cuadro" id="SextoCuadro"></div>
+            </div>
+            <div id="TercioCentral" class="Tercio">
+                <div class="Cuadro" id="SeptimoCuadro"><img src="assets/Imgs/Telecomunicaciones/note.png" alt="Notebook" id="Notebook" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('Notebook')"></div>
+                <div class="Cuadro" id="OctavoCuadro"></div>
+                <div class="Cuadro" id="NovenoCuadro"></div>
+                <div class="Cuadro" id="DecimoCuadro"></div>
+                <div class="Cuadro" id="DecimoPrimerCuadro"></div>
+                <div class="Cuadro" id="DecimoSegundoCuadro"></div>
+            </div>
+            <div id="TercioInferior" class="Tercio">
+                <div class="Cuadro" id="DecimoTercerCuadro"><img src="assets/Imgs/Telecomunicaciones/pc.png" alt="PC" id="PC" draggable="true" ondragstart="drag(event)" ontouchstart="SeleccionarElementoTocado('PC')"></div>
+                <div class="Cuadro CuadoDeObjeto" id="DecimoCuartoCuadro" ondrop="dropDeIng(event)" ondragover="allowDrop(event)" ontouchstart="DestionoDeIngSeleccionado('DecimoCuartoCuadro')">
+                </div>
+                <div class="Cuadro CuadoDeObjeto" id="DecimoQuintoCuadro" ondrop="dropDeIng(event)" ondragover="allowDrop(event)" ontouchstart="DestionoDeIngSeleccionado('DecimoQuintoCuadro')">
+                </div>
+                <div class="Cuadro" id="DecimoSextoCuadro"></div>
+                <div class="Cuadro CuadoDeObjeto" id="DecimoSeptimoCuadro" ondrop="dropDeIng(event)" ondragover="allowDrop(event)" ontouchstart="DestionoDeIngSeleccionado('DecimoSeptimoCuadro')">
+                </div>
+                <div class="Cuadro" id="DecimoOctavoCuadro"></div>
+            </div>
+        </div>
+        <!--            Scripts           -->
+        <script>
+            var VideoContainer      = document.getElementById('Video');  
+            var VideoSource         = document.getElementById('FuenteWebm');
+            var AudioContainer      = document.getElementById('Audios');  
+            var MusicContainer      = document.getElementById('Musica');
+            var MusicSource         = document.getElementById('FuenteMusica');
+            var LoopContainer       = document.getElementById('Loops');
+            var SalirDeJuego        = document.getElementById('SalirDelJuego');
+            var Opcion1             = document.getElementById("BotonIzquierda-Opcion1");
+            var Opcion2             = document.getElementById("BotonDerecha-Opcion2");
+            var Opcion3             = document.getElementById("BotonIzquierda-Opcion3");
+            var Opcion4             = document.getElementById("BotonDerecha-Opcion4");
+            var Opcion5             = document.getElementById("BotonInferior-Opcion5");
+            var Opcion6             = document.getElementById("BotonSuperior-Opcion6");
+            var Opcion7             = document.getElementById("BotonCentral-Opcion7");
+            var Opcion8             = document.getElementById("BotonCentral-Opcion8");
+            var Opcion9             = document.getElementById("BotonCentral-Opcion9");
+            var BotonPlay           = document.getElementById('BotonPlay');
+            var LogoDeCarga         = document.getElementById("Cargando");
+            var Puerta1             = document.getElementById('Puerta1');
+            var Puerta2             = document.getElementById('Puerta2');
+            var Puerta3             = document.getElementById('Puerta3');
+            var EstadoMontyHall     = document.getElementById('MensajeMontyHall');
+            var MensajesAlgoritmo   = document.getElementById('ContenedorMensajesAlgoritmo');
+            MusicContainer.volume   =  0.1;
+            function Listeners(){
+                Opcion1.addEventListener("onclick", OpcionAccionada);
+                Opcion2.addEventListener("onclick", OpcionAccionada);
+                Opcion3.addEventListener("onclick", OpcionAccionada);
+                Opcion4.addEventListener("onclick", OpcionAccionada);
+                Opcion5.addEventListener("onclick", OpcionAccionada);
+                Opcion6.addEventListener("onclick", OpcionAccionada);
+                Opcion7.addEventListener("onclick", OpcionAccionada);
+                Opcion8.addEventListener("onclick", OpcionAccionada);
+                Opcion9.addEventListener("onclick", OpcionAccionada);
+                VideoContainer.addEventListener("oncanplaythrought", ChequeoDeCarga);
+                VideoContainer.addEventListener("play", DesactivarOpciones);
+                VideoContainer.addEventListener("waiting", ActivarLogoDeCarga)
+            }
+            function ChequeoDeCarga(){ 
+                    if (Video_0_Visto == false) {
+                        document.getElementById("PantallaDeInicio").style.display="none";
+                        ContenedorVideo.style.display="flex";               //Ocultamos el boton de play.
+                }
+            }
+        </script>
+        <script src="assets/js/three.r95.min.js"></script>
+        <script src="assets/js/vanta.net.min.js"></script>
+        <script src="assets/js/vanta.waves.min.js"></script>
+    </body>
+</html>
